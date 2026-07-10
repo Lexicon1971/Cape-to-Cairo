@@ -12,7 +12,6 @@ export default class Ship extends Phaser.Physics.Arcade.Sprite {
         this.gameState = gameState;
 
         // Graphics
-        this.setFillStyle(0xffcc00);
         this.displayWidth = 30;
         this.displayHeight = 40;
         this.body.setCollideWorldBounds(true);
@@ -38,7 +37,7 @@ export default class Ship extends Phaser.Physics.Arcade.Sprite {
         const graphics = this.scene.add.graphics();
         graphics.fillStyle(0xffcc00, 1);
         graphics.fillRect(-15, -20, 30, 40);
-        graphics.strokeStyle(0xffaa00, 2);
+        graphics.lineStyle(2, 0xffaa00, 1);
         graphics.strokeRect(-15, -20, 30, 40);
         graphics.generateTexture('ship', 30, 40);
         graphics.destroy();
