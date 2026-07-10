@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cape to Cairo - Trade Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        #game {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+        #gameCanvas {
+            flex: 1;
+        }
+        #ui {
+            width: 250px;
+            background: #2a2a2a;
+            border-left: 2px solid #444;
+            padding: 20px;
+            color: #ddd;
+            overflow-y: auto;
+        }
+        #ui h2 {
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 14px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        .ui-section {
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        .ui-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .ui-label {
+            color: #aaa;
+        }
+        .ui-value {
+            color: #0f0;
+            font-weight: bold;
+        }
+    </style>
+  <script type="module" crossorigin src="/Cape-to-Cairo/assets/index-Dwm_H9PH.js"></script>
+</head>
+<body>
+    <div id="game"></div>
+    <div id="ui">
+        <h2>Cape to Cairo</h2>
+        <div class="ui-section">
+            <h3 style="font-size: 12px; margin-bottom: 8px; color: #0f0;">PLAYER</h3>
+            <div class="ui-stat">
+                <span class="ui-label">Gold:</span>
+                <span class="ui-value" id="gold">5000</span>
+            </div>
+            <div class="ui-stat">
+                <span class="ui-label">Ships:</span>
+                <span class="ui-value" id="ships">3</span>
+            </div>
+        </div>
+        <div class="ui-section">
+            <h3 style="font-size: 12px; margin-bottom: 8px; color: #0f0;">PORTS</h3>
+            <div id="portList" style="font-size: 11px;">
+                <!-- Populated by game -->
+            </div>
+        </div>
+        <div class="ui-section">
+            <h3 style="font-size: 12px; margin-bottom: 8px; color: #0f0;">SELECTED SHIP</h3>
+            <div id="shipInfo" style="font-size: 11px; color: #aaa;">
+                Click a ship to select
+            </div>
+        </div>
+    </div>
+</body>
+</html>
