@@ -1,23 +1,26 @@
 export const gameConfig = {
-    mapWidth: 2400,
+    mapWidth: 1200,
     mapHeight: 1800,
     startingGold: 5000,
     startingShips: 3,
-    gridSize: 50,
 };
 
 export const ports = [
-    { id: 'cairo', name: 'Cairo', x: 1200, y: 900, resources: ['grain', 'spice'] },
-    { id: 'cape', name: 'Cape Town', x: 200, y: 200, resources: ['wine', 'timber'] },
-    { id: 'alexandria', name: 'Alexandria', x: 1100, y: 800, resources: ['grain', 'wine'] },
-    { id: 'zanzibar', name: 'Zanzibar', x: 1400, y: 500, resources: ['spice', 'ivory'] },
-    { id: 'dar', name: 'Dar es Salaam', x: 1350, y: 400, resources: ['ivory', 'grain'] },
+    { id: 'cairo', name: 'Cairo', x: 750, y: 150, resources: ['grain', 'spice'] },
+    { id: 'alexandria', name: 'Alexandria', x: 680, y: 100, resources: ['grain', 'wine'] },
+    { id: 'port_sudan', name: 'Port Sudan', x: 800, y: 450, resources: ['ivory', 'spice'] },
+    { id: 'mombasa', name: 'Mombasa', x: 880, y: 920, resources: ['timber', 'grain'] },
+    { id: 'zanzibar', name: 'Zanzibar', x: 910, y: 1000, resources: ['spice', 'ivory'] },
+    { id: 'dar_es_salaam', name: 'Dar es Salaam', x: 900, y: 1060, resources: ['wine', 'timber'] },
+    { id: 'mozambique', name: 'Mozambique', x: 830, y: 1250, resources: ['timber', 'grain'] },
+    { id: 'durban', name: 'Durban', x: 680, y: 1550, resources: ['wine', 'grain'] },
+    { id: 'cape_town', name: 'Cape Town', x: 450, y: 1700, resources: ['wine', 'timber'] },
 ];
 
 export const resourcePrices = {
-    grain: { baseBuy: 10, baseSell: 15 },
-    spice: { baseBuy: 50, baseSell: 80 },
-    wine: { baseBuy: 20, baseSell: 35 },
-    timber: { baseBuy: 15, baseSell: 25 },
-    ivory: { baseBuy: 60, baseSell: 100 },
+    grain: { baseBuy: 10, baseSell: 15, name: 'Grain' },
+    spice: { baseBuy: 50, baseSell: 80, name: 'Spice' },
+    wine: { baseBuy: 20, baseSell: 35, name: 'Wine' },
+    timber: { baseBuy: 15, baseSell: 25, name: 'Timber' },
+    ivory: { baseBuy: 100, baseSell: 160, name: 'Ivory' },
 };

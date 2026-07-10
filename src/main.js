@@ -1,11 +1,10 @@
 import Phaser from 'phaser';
 import GameScene from './scenes/GameScene';
-import { gameConfig } from './config/gameConfig';
 
 const config = {
     type: Phaser.AUTO,
-    parent: 'game',
-    width: window.innerWidth - 250,
+    parent: 'game-container',
+    width: window.innerWidth - 320,
     height: window.innerHeight,
     physics: {
         default: 'arcade',
@@ -19,6 +18,12 @@ const config = {
 
 const game = new Phaser.Game(config);
 
+// Save the active scene on game boot/creation
+game.events.once('ready', () => {
+    const scene = game.scene.getScene('GameScene');
+    window.phaserGameScene = scene;
+});
+
 window.addEventListener('resize', () => {
-    game.scale.resize(window.innerWidth - 250, window.innerHeight);
+    game.scale.resize(window.innerWidth - 320, window.innerHeight);
 });

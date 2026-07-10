@@ -11,75 +11,241 @@
             box-sizing: border-box;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-            background: #1a1a1a;
-        }
-        #game {
+            background: #0d1b2a;
+            color: #e0e1dd;
             display: flex;
             width: 100vw;
             height: 100vh;
         }
-        #gameCanvas {
+        #game-container {
             flex: 1;
+            height: 100vh;
+            position: relative;
+            background: #0d1b2a;
         }
-        #ui {
-            width: 250px;
-            background: #2a2a2a;
-            border-left: 2px solid #444;
-            padding: 20px;
-            color: #ddd;
+        #ui-panel {
+            width: 320px;
+            background: #1b263b;
+            border-left: 3px solid #415a77;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
-        #ui h2 {
-            margin-bottom: 15px;
-            color: #fff;
-            font-size: 14px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
+        h1, h2, h3 {
+            color: #e0e1dd;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            border-bottom: 2px solid #e0e1dd;
+            padding-bottom: 8px;
+            margin-bottom: 5px;
+            color: #f5b041;
+        }
+        .section-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #38b000;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #415a77;
+            padding-bottom: 3px;
         }
         .ui-section {
-            margin-bottom: 20px;
-            font-size: 12px;
+            background: #0d1b2a;
+            border-radius: 6px;
+            padding: 10px;
+            border: 1px solid #415a77;
         }
         .ui-stat {
             display: flex;
             justify-content: space-between;
             margin-bottom: 5px;
+            font-size: 13px;
         }
         .ui-label {
-            color: #aaa;
+            color: #a3b18a;
         }
         .ui-value {
-            color: #0f0;
+            color: #ffffff;
             font-weight: bold;
+        }
+        .gold-val {
+            color: #ffd700;
+        }
+        /* Buttons and Interactive Elements */
+        button {
+            background-color: #415a77;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        button:hover {
+            background-color: #e0e1dd;
+            color: #0d1b2a;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        button:disabled {
+            background-color: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 8px;
+            font-size: 11px;
+            border-radius: 4px 4px 0 0;
+            background: #0d1b2a;
+            border: 1px solid #415a77;
+            border-bottom: none;
+        }
+        .tab-btn.active {
+            background: #415a77;
+            color: white;
+        }
+        .tabs-header {
+            display: flex;
+            margin-bottom: 0;
+        }
+        .tab-content {
+            background: #0d1b2a;
+            border: 1px solid #415a77;
+            border-radius: 0 0 6px 6px;
+            padding: 10px;
+            font-size: 12px;
+            min-height: 180px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        /* Flex rows & general classes */
+        .flex-row {
+            display: flex;
+            gap: 5px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        /* Trade/Bank/Building forms */
+        .trade-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px;
+            align-items: center;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed #415a77;
+        }
+        .trade-name {
+            font-weight: bold;
+            color: #e0e1dd;
+        }
+        .trade-prices {
+            font-size: 10px;
+            color: #a3b18a;
+            display: flex;
+            flex-direction: column;
+        }
+        .trade-btns {
+            display: flex;
+            gap: 3px;
+        }
+        .trade-btns button {
+            padding: 4px 6px;
+            font-size: 9px;
+            flex: 1;
+        }
+        .bank-option {
+            background: #1b263b;
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #415a77;
+            margin-bottom: 6px;
         }
     </style>
 </head>
 <body>
-    <div id="game"></div>
-    <div id="ui">
-        <h2>Cape to Cairo</h2>
+    <div id="game-container"></div>
+    <div id="ui-panel">
+        <h1>Cape to Cairo</h1>
+
+        <!-- Day/Time Controls -->
         <div class="ui-section">
-            <h3 style="font-size: 12px; margin-bottom: 8px; color: #0f0;">PLAYER</h3>
-            <div class="ui-stat">
-                <span class="ui-label">Gold:</span>
-                <span class="ui-value" id="gold">5000</span>
-            </div>
-            <div class="ui-stat">
-                <span class="ui-label">Ships:</span>
-                <span class="ui-value" id="ships">3</span>
-            </div>
-        </div>
-        <div class="ui-section">
-            <h3 style="font-size: 12px; margin-bottom: 8px; color: #0f0;">PORTS</h3>
-            <div id="portList" style="font-size: 11px;">
-                <!-- Populated by game -->
+            <div class="flex-row">
+                <div>
+                    <span class="ui-label">Day:</span>
+                    <span class="ui-value" id="game-day">1</span>
+                </div>
+                <div class="flex-row" style="gap: 5px;">
+                    <button id="btn-pause">Pause</button>
+                    <button id="btn-play" style="background-color: #38b000;">Play</button>
+                </div>
             </div>
         </div>
+
+        <!-- Player Summary -->
         <div class="ui-section">
-            <h3 style="font-size: 12px; margin-bottom: 8px; color: #0f0;">SELECTED SHIP</h3>
-            <div id="shipInfo" style="font-size: 11px; color: #aaa;">
+            <div class="section-title">Empire Finances</div>
+            <div class="ui-stat">
+                <span class="ui-label">Total Gold:</span>
+                <span class="ui-value gold-val" id="gold">5000</span>
+            </div>
+            <div class="ui-stat">
+                <span class="ui-label">Company Net Worth:</span>
+                <span class="ui-value" id="net-worth">5000</span>
+            </div>
+            <div class="ui-stat">
+                <span class="ui-label">Outstanding Loans:</span>
+                <span class="ui-value" id="loans-val" style="color: #ff4d4d;">0</span>
+            </div>
+        </div>
+
+        <!-- Port List / Dynamic Info -->
+        <div class="ui-section">
+            <div class="section-title">Ports & Map</div>
+            <div id="portList" style="font-size: 11px; max-height: 120px; overflow-y: auto;">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Multi-Tab Interaction Section -->
+        <div>
+            <div class="tabs-header">
+                <button class="tab-btn active" id="tab-trade">Cargo/Trade</button>
+                <button class="tab-btn" id="tab-build">Properties</button>
+                <button class="tab-btn" id="tab-bank">Bank</button>
+            </div>
+            <div class="tab-content" id="tab-content-area">
+                <!-- Dynamic based on selected tab & selected ship/port -->
+                <div id="interaction-instructions" style="color: #a3b18a; text-align: center; padding-top: 40px;">
+                    Select a ship by clicking it to inspect cargo, trade, or build properties at its docked port.
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Entity Footer -->
+        <div class="ui-section">
+            <div class="section-title">Selection Info</div>
+            <div id="shipInfo">
                 Click a ship to select
             </div>
         </div>
