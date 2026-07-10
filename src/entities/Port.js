@@ -13,7 +13,7 @@ export default class Port {
         const graphics = scene.add.graphics();
         graphics.fillStyle(0x8b4513, 1);
         graphics.fillCircle(this.x, this.y, 25);
-        graphics.strokeStyle(0xd2691e, 2);
+        graphics.lineStyle(2, 0xd2691e, 1);
         graphics.strokeCircle(this.x, this.y, 25);
 
         // Port label
